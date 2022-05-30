@@ -194,7 +194,6 @@ while running:
             spot_grid[col][row].draw(WIN, GREY)
             draw_grid_lines()
             maze[row][col] = 0
-            print(maze[row])
 
 
         if pygame.mouse.get_pressed()[2]:
@@ -203,15 +202,18 @@ while running:
             spot_grid[col][row].draw(WIN, GREEN_2)
             draw_grid_lines()
             maze[row][col] = 1
-            print(maze[row])
         
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 print("Space")
                 paths = path_finder(maze)
+
+            if event.key == pygame.K_p:
+                print("Maze: ")
                 for i in maze:
                     print(i)
+
 
             if event.key == pygame.K_s:
                 paths.sort(key=len)
@@ -226,4 +228,4 @@ while running:
 
         
     pygame.display.update()
-    clock.tick(60)
+    clock.tick(120)
