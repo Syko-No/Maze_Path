@@ -1,5 +1,4 @@
 import time
-from cv2 import FlannBasedMatcher
 import pygame
 pygame.init()
 
@@ -13,8 +12,8 @@ WHITE = (255,255,255)
 GREY = (128,128,128)
 GOLD = (255, 215, 0)
 
-WIDHT = 600
-GAP = 100
+WIDHT = 800
+GAP = 20
 ROWS = WIDHT//GAP
 
 WIN = pygame.display.set_mode((WIDHT, WIDHT))
@@ -100,12 +99,13 @@ def path_finder(maze):
             print(moves)
             paths.append(moves)
             spot_grid[j][i].draw(WIN, GOLD)
-            time.sleep(1)
 
             # for row in spot_grid:
             #     for spot in row:
             #         spot.draw(WIN, GREEN_2)
             draw_grid_lines()
+            pygame.display.update()
+            time.sleep(1)
             return
             
         #Down
@@ -151,11 +151,35 @@ def path_finder(maze):
     return paths
 
 
-for row in spot_grid:
-    for spot in row:
-        print(spot, end=' ')
-    print()
+def shortest_path(path):
+    
+    i = j = 0
 
+    for move in path:
+        time.sleep(0.05)
+        if move == 'D':
+            spot_grid[j][i].draw(WIN, GREEN)
+            pygame.display.update()
+            draw_grid_lines()
+            i += 1
+        elif move == 'L':
+            spot_grid[j][i].draw(WIN, GREEN)
+            pygame.display.update()
+            draw_grid_lines()
+            j -= 1
+        elif move == 'R':
+            spot_grid[j][i].draw(WIN, GREEN)
+            pygame.display.update()
+            draw_grid_lines()
+            j += 1
+        elif move == 'U':
+            spot_grid[j][i].draw(WIN, GREEN)
+            pygame.display.update()
+            draw_grid_lines()
+            i -= 1
+
+
+paths = []
 
 # window loop
 running = True
@@ -164,20 +188,36 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if pygame.mouse.get_pressed()[0]:
             pos = pygame.mouse.get_pos()
             col, row = pos[0]//GAP, pos[1]//GAP
             spot_grid[col][row].draw(WIN, GREY)
+            draw_grid_lines()
             maze[row][col] = 0
+            print(maze[row])
+
+
+        if pygame.mouse.get_pressed()[2]:
+            pos = pygame.mouse.get_pos()
+            col, row = pos[0]//GAP, pos[1]//GAP
+            spot_grid[col][row].draw(WIN, GREEN_2)
+            draw_grid_lines()
+            maze[row][col] = 1
             print(maze[row])
         
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 print("Space")
-                path_finder(maze)
+                paths = path_finder(maze)
                 for i in maze:
                     print(i)
+
+            if event.key == pygame.K_s:
+                paths.sort(key=len)
+                s_path = paths[0]
+                shortest_path(s_path)
+
             if event.key == pygame.K_r:
                 print("R")
                 clear_maze()
