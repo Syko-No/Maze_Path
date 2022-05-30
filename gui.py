@@ -117,7 +117,6 @@ def path_finder(maze):
             visited[i][j] = 0
             spot_grid[j][i].draw(WIN, GREEN_2)
             draw_grid_lines()
-            draw_grid_lines()
         #Left
         if((j-1)>=0 and maze[i][j-1] and not visited[i][j-1]):
             visited[i][j] = 1
@@ -179,9 +178,10 @@ while running:
                 path_finder(maze)
                 for i in maze:
                     print(i)
-            if event.key == pygame.K_R:
+            if event.key == pygame.K_r:
                 print("R")
                 clear_maze()
+                place_spots(WIN, spot_grid)
                 draw_grid_lines()
 
         
