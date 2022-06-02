@@ -1,4 +1,4 @@
-# Maze_Path
+# Maze Path
 ## **Finding path through maze using Backtracking** **UPDATED**
 
 ###### Setup:
