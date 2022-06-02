@@ -7,7 +7,7 @@
 
 ###### Usage:
 
-- Run the `gui.py` to start the app.
+- Run the `app.py` to start the app.
 - Use left click to add walls and right click to remove walls (Grey color indicates walls).
 - Top left corner is starting position and bottom left corner is the ending position.
 - Reset the maze by pressing R.
