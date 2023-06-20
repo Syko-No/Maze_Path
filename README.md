@@ -1,6 +1,8 @@
 # Maze Path
 ## **Finding path through maze using Backtracking** **UPDATED**
 
+![Maze Path](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjcyenF2eDNxOW1vazhnMWtjeTdsYzR1ZGpoMHVqMHlmbm1hbTN0YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zOCiZFzIqwbLzZkBgC/giphy.gif)
+
 ###### Setup:
 - Have `Python 3` and `pygame` installed.
 - Place the `app.py` and `presets.py` in the same folder.
